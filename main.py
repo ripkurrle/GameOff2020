@@ -12,20 +12,21 @@ from random import random
 import math
 
 Window.size = (640, 480)
+Window.set_title('My Space Game')
+Window.set_system_cursor(cursor_name='crosshair')
 
 Builder.load_string('''
 <Root>:
     Earth:
         pos: root.width / 2 - self.width / 2, root.height / 2 - self.height / 2
+        size: self.size
     Moon:
         pos: root.width / 2 - self.width / 2, root.height / 2 - self.height / 2
+        size: root.width / 16, root.width / 16
 <Earth>
     canvas:
         Color:
-            rgba: 1, 0, 0, 1
-        # Rectangle:
-        #     pos: self.pos
-        #     size: self.size
+            rgba: 1, 1, 1, 1
         Ellipse:
             # Earth
             size: self.size
@@ -34,10 +35,7 @@ Builder.load_string('''
 <Moon>
     canvas:
         Color:
-            rgba: 0, 1, 0, 1
-        # Rectangle:
-        #     pos: self.pos
-        #     size: self.size
+            rgba: 1, 1, 1, 1
         Ellipse:
             # Moon
             size: self.size
@@ -55,7 +53,6 @@ class Grid(Widget):
     pass
 
 class Moon(Widget):
-    # location = ListProperty([300,300])
     angle = 0
 
     def __init__(self, **kwargs):
@@ -63,28 +60,9 @@ class Moon(Widget):
         Clock.schedule_interval(self.update, 1/60.)
 
     def update(self, *args):
-        Animation.cancel_all(self)
-        self.angle += 10
-        # self.x += math.sin(self.angle/360*math.pi)
-        # self.y += math.cos(self.angle/360*math.pi)
-        self.x = (Window.width/2 - self.width/2) + 100*math.cos(self.angle/360*math.pi)
-        self.y = (Window.height/2 - self.height/2) + 100*math.sin(self.angle/360*math.pi)
-
-    
-    # def anim_to_random_pos(self):
-    #     Animation.cancel_all(self)
-    #     random_x = math.sin() * (Window.width - self.width)
-    #     random_y = math.cos() * (Window.height - self.height)
-
-    #     anim = Animation(x=random_x, y=random_y,
-    #         duration = 4,
-    #         t = 'out_elastic')
-    #     anim.start(self)
-        
-    # def on_touch_down(self, touch):
-    #     if self.collide_point(*touch.pos):
-    #         self.anim_to_random_pos()
-
+        self.angle += 1
+        self.x = (Window.width - self.width)/2 + 200*math.cos(self.angle/360*math.pi)
+        self.y = (Window.height - self.height)/2 + 200*math.sin(self.angle/360*math.pi)
 
 if __name__ == '__main__':
     runTouchApp(Root())
