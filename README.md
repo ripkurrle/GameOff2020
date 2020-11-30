@@ -7,6 +7,9 @@ TODO:
  - Gravity
  - Shuttle to slingshot around moon
  - Other planets and moons to try to land on
+ - Better resposive layout
+ - Work out how to adjust moon size in kv without impacting orbit
+ - Adjustable speed of Missle/Shuttle based on distance from origin
 
 Assets
 Moon Photo by Alex Andrews from Pexels

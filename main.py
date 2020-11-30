@@ -1,5 +1,8 @@
 from kivy.base import runTouchApp
+from kivy.app import App
 from kivy.lang import Builder
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.label import Label
 
 from kivy.uix.widget import Widget
 
@@ -7,13 +10,14 @@ from kivy.clock import Clock
 from kivy.animation import Animation
 from kivy.properties import ListProperty
 from kivy.core.window import Window
+from kivy.graphics import Rotate
 
-from random import random
 import math
 
 Window.size = (640, 480)
 Window.set_title('My Space Game')
 Window.set_system_cursor(cursor_name='crosshair')
+
 
 Builder.load_string('''
 <Root>:
@@ -23,6 +27,7 @@ Builder.load_string('''
     Moon:
         pos: root.width / 2 - self.width / 2, root.height / 2 - self.height / 2
         size: root.width / 16, root.width / 16
+
 <Earth>
     canvas:
         Color:
@@ -38,9 +43,16 @@ Builder.load_string('''
             rgba: 1, 1, 1, 1
         Ellipse:
             # Moon
+            id: moon
             size: self.size
             pos: self.pos
             source: 'pexels-alex-andrews-821718-moon.png'
+    Label:
+        id: moon_label
+        text: self.text
+    Label:
+        id: score
+        text: self.text
 ''')
 
 class Root(Widget):
@@ -49,20 +61,27 @@ class Root(Widget):
 class Earth(Widget):
     pass
 
-class Grid(Widget):
-    pass
-
 class Moon(Widget):
     angle = 0
+    distance = 200
+    text = ""
+    score = 0
 
     def __init__(self, **kwargs):
         super(Moon, self).__init__(**kwargs)
-        Clock.schedule_interval(self.update, 1/60.)
+        Clock.schedule_interval(self.update, 1/80.)
+        
 
     def update(self, *args):
         self.angle += 1
-        self.x = (Window.width - self.width)/2 + 200*math.cos(self.angle/360*math.pi)
-        self.y = (Window.height - self.height)/2 + 200*math.sin(self.angle/360*math.pi)
+        self.x = (Window.width - self.width)/2 + self.distance*math.cos(self.angle/360*math.pi)
+        self.y = (Window.height - self.height)/2 + self.distance*math.sin(self.angle/360*math.pi)
+
+    def on_touch_down(self, touch):
+        if self.collide_point(*touch.pos):
+            print('hit')
+            self.score += 1
+            self.ids.moon_label.text = "Hit! Score : " + str(self.score)
 
 if __name__ == '__main__':
     runTouchApp(Root())
