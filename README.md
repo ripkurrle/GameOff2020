@@ -10,6 +10,8 @@ Built over a few days with Python / Kivy using far too many online tutorials.
 
 ## Learnings
 * Reminder on OOP
+* Reminder on Git
+* Basics of Affinity Photo
 * Basics of Python
 * Basics of Tkinker
 * Basics of Kivy
