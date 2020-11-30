@@ -1,17 +1,10 @@
 from kivy.base import runTouchApp
-from kivy.app import App
 from kivy.lang import Builder
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
-
 from kivy.uix.widget import Widget
 
 from kivy.clock import Clock
-from kivy.animation import Animation
-from kivy.properties import ListProperty
 from kivy.core.window import Window
-from kivy.graphics import Rotate
-
 import math
 
 Window.size = (640, 480)
@@ -79,7 +72,6 @@ class Moon(Widget):
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
-            print('hit')
             self.score += 1
             self.ids.moon_label.text = "Hit! Score : " + str(self.score)
 

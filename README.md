@@ -1,19 +1,31 @@
-Submission for 2020 itch.io Game Off Jam
+# Submission for 2020 itch.io Game Off Jam
 
 Game where you literally shoot at the moon.
 
-TODO:
- - Elliptical orbits
- - Gravity
- - Shuttle to slingshot around moon
- - Other planets and moons to try to land on
- - Better resposive layout
- - Work out how to adjust moon size in kv without impacting orbit
- - Adjustable speed of Missle/Shuttle based on distance from origin
+Aim was to launch a shuttle that could interact (slingshot/orbit) with the Moon
 
-Assets
+Built over a few days with Python / Kivy using far too many online tutorials.
+
+![preview](/preview.png)
+
+## Learnings
+* Reminder on OOP
+* Basics of Python
+* Basics of Tkinker
+* Basics of Kivy
+
+## TODO:
+ 1. Elliptical orbits
+ 1. Gravity
+ 1. Shuttle to slingshot around moon
+ 1. Other planets and moons to try to land on
+ 1. Better resposive layout
+ 1. Work out how to adjust moon size in kv without impacting orbit
+ 1. Adjustable speed of Missle/Shuttle based on distance from origin
+
+## Assets
 Moon Photo by Alex Andrews from Pexels
 https://www.pexels.com/photo/full-moon-821718/
 
-Earth Photo via Pexels
+EarthPhoto via Pexels
 https://www.pexels.com/photo/planet-earth-87651/
